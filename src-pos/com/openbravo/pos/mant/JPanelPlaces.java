@@ -31,6 +31,7 @@ import com.openbravo.format.Formats;
 import com.openbravo.pos.forms.AppLocal;
 import com.openbravo.pos.forms.DataLogicSales;
 import com.openbravo.pos.panels.JPanelTable;
+import java.util.List;
 import javax.swing.ListCellRenderer;
 
 /**
@@ -63,7 +64,10 @@ public class JPanelPlaces extends JPanelTable {
             , new int[] {0}
         ); 
         jeditor = new PlacesEditor(dlSales, dirty); 
-
+        Places all_tables = new Places();
+        List results;
+//        results = all_tables.findByFloor("");
+//);
     }
         
     /**

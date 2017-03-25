@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    KASWARE  - POS Solution
+    Copyright (c) KASWARE.
+    http://sourceforge.net/projects/KASWARE
+
+-->
+
+<!--
+    The Administrator Role Permissions has full access to all KASWARE 
+    functionality.
+    The Administrator Role should only be used to make system changes.
+    
+    *** Do not change unless you know what you are doing ***
+-->
+
+<permissions>
+    <class name="com.openbravo.pos.sales.JPanelTicketSales"/>
+    <class name="com.openbravo.pos.sales.JPanelTicketEdits"/>
+    <class name="com.openbravo.pos.customers.CustomersPayment"/>
+    <class name="com.openbravo.pos.panels.JPanelPayments"/>  
+
+<!--    <class name="sales.EditLines"/> -->
+    <class name="sales.EditTicket"/>
+    <class name="sales.PrintTicket"/>
+    <class name="sales.Total"/>
+    
+    <class name="payment.cash"/>
+    <class name="payment.cheque"/>
+    <class name="payment.voucher"/>
+    <class name="payment.magcard"/>
+    <class name="payment.slip"/>    
+    <class name="payment.free"/>
+    <class name="payment.debt"/>
+    <class name="sales.PrintKitchen"/>
+
+
+<!-- Standard button scripts -->
+    <class name="button.totaldiscount"/>
+    <class name="button.print"/>
+    
+<!-- Additional button scripts -->
+    <class name="button.linediscount"/>
+    <class name="button.sendorder"/>
+
+<class name="Menu.ChangePassword"/>
+<class name="com.openbravo.pos.panels.JPanelPrinter"/>
+
+</permissions>

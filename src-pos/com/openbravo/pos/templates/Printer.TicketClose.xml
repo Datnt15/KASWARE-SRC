@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    KASWARE  - POS Solution
+    Copyright (c) KASWARE.
+    http://sourceforge.net/projects/KASWARE
+
+    This file is part of KASWARE .
+
+    
+
+ -->
+<output>   
+    <display>
+    #foreach ($paymentline in $ticket.payments)
+            <line>
+              <text align="left" length="8">Given:</text>
+              <text align ="right" length="12">${paymentline.printPaid()}</text>
+            </line>
+            <line>
+              <text align="left" length="8">Change:</text>
+              <text align ="right" length="12">${paymentline.printChange()}</text>
+            </line>
+    #end
+    </display>
+</output>

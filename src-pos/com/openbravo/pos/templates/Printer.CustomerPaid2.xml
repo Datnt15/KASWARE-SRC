@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    KASWARE  - POS Solution
+    Copyright (c) KASWARE.
+    http://sourceforge.net/projects/KASWARE
+
+    This file is part of KASWARE .
+
+   
+ -->
+<output>
+    <display>
+        <line>
+            <text align="left" length="10">Total Paid</text>
+            <text align="right" length="10">${ticket.printTotalPaid()}</text>
+        </line>
+        <line>
+            <text align="center" length="20">Thank You for your custom</text>
+        </line>
+    </display>
+</output>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    KASWARE  - POS Solution
+    Copyright (c) KASWARE.
+    http://sourceforge.net/projects/KASWARE
+
+    This file is part of KASWARE .
+
+ -->
+<permissions>
+    <class name="com.openbravo.pos.sales.JPanelTicketSales"/>  
+</permissions>

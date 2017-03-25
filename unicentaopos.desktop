@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=4.2
+Encoding=UTF-8
+Name=KASWARE
+Terminal=false
+Exec=unicentaopos
+Icon=unicentaopos
+Type=Application
+InitialPreference=6
+Categories=Application;Office;
+StartupNotify=false
+GenericName=KASWARE
+Comment=KASWARE POS Solution
+Name[en_US]=KASWARE
+GenericName[en_US]=KASWARE

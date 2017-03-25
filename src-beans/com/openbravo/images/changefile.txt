@@ -1,0 +1,8 @@
+main logo : 103x34 png
+mainapp logo : 410x289 png
+databaseconfig logo : 100x100 png
+loading screen : 500x352 png
+icon : 128x128 ico
+installer logo : 48x48 png
+window logo : 38x38 png
+favicon 48x48 png

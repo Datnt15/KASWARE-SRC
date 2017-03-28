@@ -170,8 +170,7 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
         m_jPriceSellTax.getDocument().addDocumentListener(new PriceTaxManager());
         m_jmargin.getDocument().addDocumentListener(new MarginManager());
         m_jGrossProfit.getDocument().addDocumentListener(new MarginManager());
-       
-            init();
+        init();
     }
     
     private void init() {
@@ -582,7 +581,7 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
         attmodel.setSelectedKey(myprod[9]);
         m_jstockcost.setText(Formats.CURRENCY.formatValue(myprod[10]));
         m_jstockvolume.setText(Formats.DOUBLE.formatValue(myprod[11]));
-// JG 3 feb 16 speed test        m_jImage.setImage((BufferedImage) myprod[12]);
+        // JG 3 feb 16 speed test        m_jImage.setImage((BufferedImage) myprod[12]);
         m_jImage.setImage(findImage(m_oId));
         m_jComment.setSelected(((Boolean)myprod[13]));
         m_jScale.setSelected(((Boolean)myprod[14]));
@@ -608,7 +607,7 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
         
         reportlock = false;
 
-// Tab General
+        // Tab General
         m_jRef.setEnabled(false);
         m_jCode.setEnabled(false);
         m_jCodetype.setEnabled(false);
@@ -624,7 +623,7 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
         m_jmargin.setEnabled(false);
         m_jPrintTo.setEnabled(false);
         
-// Tab Stock
+        // Tab Stock
         m_jInCatalog.setEnabled(false);
         m_jConstant.setEnabled(false);
         m_jCatalogOrder.setEnabled(false);
@@ -640,15 +639,15 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
         jTableProductStock.setModel(stockModel);
         jTableProductStock.setEnabled(false);        
 
-// Tab Image
+        // Tab Image
         m_jImage.setEnabled(false);        
         
-// Tab Button
+        // Tab Button
         m_jDisplay.setEnabled(false);        
         m_jTextTip.setEnabled(false);
         colourChooser.setEnabled(false);
         
-// Tab Properties        
+        // Tab Properties        
         txtAttributes.setEnabled(false);
 
         calculateMargin();
@@ -2087,6 +2086,7 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
         
     }//GEN-LAST:event_webBtnSupplierActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.alee.extended.colorchooser.WebColorChooserField colourChooser;
     private javax.swing.JButton jBtnShowTrans;

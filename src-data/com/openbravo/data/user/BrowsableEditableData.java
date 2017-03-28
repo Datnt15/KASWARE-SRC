@@ -111,6 +111,10 @@ public class BrowsableEditableData {
         this(new BrowsableData(dataprov, saveprov, null), ed, dirty);
     }
 
+    public BrowsableEditableData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Ticket data for list
      * @return

@@ -20,6 +20,9 @@
 package com.openbravo.pos.inventory;
 
 import com.openbravo.basic.BasicException;
+import com.openbravo.data.gui.MessageInf;
+import com.openbravo.data.loader.LocalRes;
+import com.openbravo.data.user.BrowsableEditableData;
 import com.openbravo.data.user.EditorListener;
 import com.openbravo.data.user.EditorRecord;
 import com.openbravo.data.user.ListProviderCreator;
@@ -30,7 +33,13 @@ import com.openbravo.pos.panels.JPanelTable2;
 import com.openbravo.pos.ticket.ProductFilter;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -61,12 +70,29 @@ public class ProductsPanel extends JPanelTable2 implements EditorListener {
 
         lpr =  new ListProviderCreator(m_dlSales.getProductCatQBF(), jproductfilter);
 
-        spr = new SaveProvider(
-            m_dlSales.getProductCatUpdate(),
-            m_dlSales.getProductCatInsert(),
-            m_dlSales.getProductCatDelete());
+//        spr = new SaveProvider(
+//            m_dlSales.getProductCatUpdate(),
+//            m_dlSales.getProductCatInsert(),
+//            m_dlSales.getProductCatDelete());
         
-        jeditor = new ProductsEditor(app, dirty);       
+        jeditor = new ProductsEditor(app, dirty);  
+        jeditor.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "add");
+        jeditor.getActionMap().put("add", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addProduct();
+            }
+        });
+    }
+    
+    private void addProduct(){
+        try {
+            BrowsableEditableData bd = new BrowsableEditableData();
+            bd.actionInsert();
+        } catch (BasicException eD) {
+            MessageInf msg = new MessageInf(MessageInf.SGN_NOTICE, LocalRes.getIntString("message.nonew"), eD);
+            msg.show(this);
+        }
     }
     
     /**

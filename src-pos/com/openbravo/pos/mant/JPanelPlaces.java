@@ -64,10 +64,6 @@ public class JPanelPlaces extends JPanelTable {
             , new int[] {0}
         ); 
         jeditor = new PlacesEditor(dlSales, dirty); 
-        Places all_tables = new Places();
-        List results;
-//        results = all_tables.findByFloor("");
-//);
     }
         
     /**

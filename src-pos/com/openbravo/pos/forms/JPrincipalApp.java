@@ -544,6 +544,9 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
                 m_jPanelTitle.setVisible(true);
                 if(sTitle == null){
                     sTitle = "Home";
+                }else{
+                    // Remove all html tag in title string
+                    sTitle = sTitle.replaceAll("\\<.*?>"," ").trim();
                 }
                 // Kiem tra xem neu menu title in MENU_VALUES (Gan home panel)
                 if (Arrays.asList(this.MENU_VALUES).contains(sTitle) ) {
@@ -558,7 +561,7 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
                 }else{
                     btn_back.setEnabled(true);
                 }
-                m_jTitle.remove(this);
+                m_jTitle1.setText(sTitle);
                 m_jTitle1.setText(get_breacrumd(this.list_title.size()-1, this.list_title.get(this.list_title.size()-1)));       
             }
         } else  {
@@ -569,6 +572,10 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
         }
         m_appview.waitCursorEnd();       
     }
+    
+//    public static String html2text(String html) {
+//        return Jsoup.parse(html).text();
+//    }
     
     /**
      *

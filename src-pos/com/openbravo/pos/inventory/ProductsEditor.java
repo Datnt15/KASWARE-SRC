@@ -170,6 +170,7 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
         m_jPriceSellTax.getDocument().addDocumentListener(new PriceTaxManager());
         m_jmargin.getDocument().addDocumentListener(new MarginManager());
         m_jGrossProfit.getDocument().addDocumentListener(new MarginManager());
+
         init();
     }
     

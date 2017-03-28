@@ -35,7 +35,6 @@ import com.openbravo.pos.ticket.ProductFilter;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -70,29 +69,31 @@ public class ProductsPanel extends JPanelTable2 implements EditorListener {
 
         lpr =  new ListProviderCreator(m_dlSales.getProductCatQBF(), jproductfilter);
 
-//        spr = new SaveProvider(
-//            m_dlSales.getProductCatUpdate(),
-//            m_dlSales.getProductCatInsert(),
-//            m_dlSales.getProductCatDelete());
+        spr = new SaveProvider(
+            m_dlSales.getProductCatUpdate(),
+            m_dlSales.getProductCatInsert(),
+            m_dlSales.getProductCatDelete());
         
         jeditor = new ProductsEditor(app, dirty);  
-        jeditor.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "add");
-        jeditor.getActionMap().put("add", new AbstractAction() {
+        // HERE ARE THE KEY BINDINGS
+        jeditor.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "addProduct");
+        jeditor.getActionMap().put("addProduct", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addProduct();
+                BrowsableEditableData my_bd;
+                my_bd = new BrowsableEditableData(lpr, spr, jeditor, dirty);
+                try {
+                    my_bd.setDirty();
+                    my_bd.setState();
+                    my_bd.actionInsert();
+                } catch (BasicException eD) {
+                    MessageInf msg = new MessageInf(MessageInf.SGN_NOTICE, LocalRes.getIntString("message.nonew"), eD);
+                    msg.show(jeditor);
+                }
             }
         });
-    }
-    
-    private void addProduct(){
-        try {
-            BrowsableEditableData bd = new BrowsableEditableData();
-            bd.actionInsert();
-        } catch (BasicException eD) {
-            MessageInf msg = new MessageInf(MessageInf.SGN_NOTICE, LocalRes.getIntString("message.nonew"), eD);
-            msg.show(this);
-        }
+        // END OF KEY BINDINGS
+         
     }
     
     /**

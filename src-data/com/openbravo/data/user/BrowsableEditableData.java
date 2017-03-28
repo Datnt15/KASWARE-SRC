@@ -199,6 +199,9 @@ public class BrowsableEditableData {
         return m_iState;
     }
     
+    public void setState(){
+        m_iState = ST_INSERT;
+    }
     private void fireStateUpdate() { 
         EventListener[] l = listeners.getListeners(StateListener.class);
         int iState = getState();
@@ -399,21 +402,26 @@ public class BrowsableEditableData {
         return m_bd.findNext(m_iIndex, f);
     }
     
+    
+    public void setDirty(){
+        m_Dirty.setDirty(true);
+    }
+    
     /**
      * Save data
      * @throws BasicException
      */
     public void saveData() throws BasicException {
-                 
+                
         if (m_Dirty.isDirty()) {
             if (m_iState == ST_UPDATE) {
                 int i = m_bd.updateRecord(m_iIndex, m_editorrecord.createValue());
                 m_editorrecord.refresh();
                 baseMoveTo(i);
             } else if (m_iState == ST_INSERT) {
-                    int i = m_bd.insertRecord(m_editorrecord.createValue());
-                    m_editorrecord.refresh();
-                    baseMoveTo(i);
+                int i = m_bd.insertRecord(m_editorrecord.createValue());
+                m_editorrecord.refresh();
+                baseMoveTo(i);
             } else if (m_iState == ST_DELETE) {
                 int i = m_bd.removeRecord(m_iIndex);
                 m_editorrecord.refresh();
@@ -484,7 +492,8 @@ public class BrowsableEditableData {
         // primero persistimos
         saveData();
         
-        if (canInsertData()) {       
+        if (canInsertData()) { 
+            System.out.println("dfdsfsd");
             // Y nos ponemos en estado de insert
             m_iState = ST_INSERT;
             m_editorrecord.writeValueInsert();

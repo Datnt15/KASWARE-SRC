@@ -36,6 +36,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,14 +75,13 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     
     private Icon menu_open;
     private Icon menu_close;
-        
+    
     //HS Updates
     private CustomerInfo customerInfo;
     private List<String> list_layout;
     private static List<String> list_title;
     private String breadcrumd_duplicated_title="null";
     private static final String[] MENU_VALUES = new String[] {"Sales","Edit Sales","Customer Payment","Payments", "Close Cash", "Customers", "Suppliers", "Stock", "Maintenance", "Presence Management", "Tools", "Configuration", "Printers", "Check In/Out"};
-        
     /** Creates new form JPrincipalApp
      * @param appview
      * @param appuser */
@@ -472,10 +473,9 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     
     
     private void showView(String sView, boolean is_back_btn_clicked) {
-         m_appview.getAppUserView().showTask(sView);
-        
+        m_appview.getAppUserView().showTask(sView);
         this.list_title.remove(this.list_title.size()-1);
-        m_jTitle1.setText(get_breacrumd(this.list_title.size()-1, this.list_title.get(this.list_title.size()-1))); 
+        set_breacrumd();
     }
     
     /**
@@ -559,7 +559,10 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
                     btn_back.setEnabled(true);
                 }
                 m_jTitle.remove(this);
-                m_jTitle1.setText(get_breacrumd(this.list_title.size()-1, this.list_title.get(this.list_title.size()-1)));       
+                this.set_breacrumd();
+                jPanel4.setBounds(0, 0, 600, 50);
+                jPanel4.setVisible(true);
+      
             }
         } else  {
 
@@ -620,12 +623,12 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
         m_jPanelRight = new javax.swing.JPanel();
         m_jPanelTitle = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        m_jTitle1 = new javax.swing.JLabel();
         btn_back = new javax.swing.JButton();
         Stock_sc = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         Config_sc = new javax.swing.JButton();
         Salessc = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         m_jPanelContainer = new javax.swing.JPanel();
 
         m_jTitle.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -675,9 +678,9 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.LINE_END);
@@ -690,13 +693,6 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
         m_jPanelTitle.setLayout(new java.awt.BorderLayout());
 
         jPanel3.setPreferredSize(new java.awt.Dimension(233, 25));
-
-        m_jTitle1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        m_jTitle1.setForeground(new java.awt.Color(0, 168, 223));
-        m_jTitle1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, java.awt.Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        m_jTitle1.setMaximumSize(new java.awt.Dimension(100, 35));
-        m_jTitle1.setMinimumSize(new java.awt.Dimension(30, 25));
-        m_jTitle1.setPreferredSize(new java.awt.Dimension(100, 35));
 
         btn_back.setBackground(new java.awt.Color(0, 168, 223));
         btn_back.setText("Back");
@@ -744,7 +740,6 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
 
         Salessc.setText("Sales");
         Salessc.setMaximumSize(new java.awt.Dimension(79, 23));
-        Salessc.setMinimumSize(new java.awt.Dimension(57, 23));
         Salessc.setPreferredSize(new java.awt.Dimension(79, 23));
         Salessc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -752,15 +747,29 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
             }
         });
 
+        jPanel4.setMinimumSize(new java.awt.Dimension(600, 50));
+        jPanel4.setPreferredSize(new java.awt.Dimension(600, 50));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(m_jTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addGap(69, 69, 69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Salessc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Stock_sc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -774,15 +783,15 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(m_jTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(Salessc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Stock_sc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Config_sc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Config_sc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -804,17 +813,21 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton1ActionPerformed
 
 //Render chuoi cua breadcrumd
-private String get_breacrumd(int index, String title){
-    if (index < 1) {
-        return title;
+private void set_breacrumd(){
+//    jPanel4.repaint();
+    for (int i = 0; i < list_title.size(); i++) {
+        String url = list_layout.get(i);
+        JLabel link = new JLabel();
+        link.setBounds(0, 50 , 50, 30);
+        link.setText(list_title.get(i));
+        link.addMouseListener(new MouseAdapter(){  
+            public void mouseClicked(MouseEvent e){  
+               showView(url, true);
+            }  
+        }); 
+        jPanel4.add(link);
     }
-    if (this.list_title.get(index) == "Home") {
-        return "Home  >  " + title;
-    } else {
-        title = this.list_title.get(index - 1) + "  >  " + title;
-        return get_breacrumd(index - 1, title);
-    }
-
+    
 }
     
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
@@ -865,12 +878,12 @@ private String get_breacrumd(int index, String title){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel m_jPanelContainer;
     private javax.swing.JScrollPane m_jPanelLeft;
     private javax.swing.JPanel m_jPanelRight;
     private javax.swing.JPanel m_jPanelTitle;
     private javax.swing.JLabel m_jTitle;
-    private javax.swing.JLabel m_jTitle1;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -28,14 +28,11 @@ import com.openbravo.pos.scripting.ScriptException;
 import com.openbravo.pos.scripting.ScriptFactory;
 import com.openbravo.pos.util.Hashcypher;
 import com.openbravo.pos.util.StringUtils;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-//import java.awt.CardLayout;
-// import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -49,7 +46,6 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import org.jdesktop.swingx.JXTaskPane;
 import org.jdesktop.swingx.JXTaskPaneContainer;
-// import org.jdesktop.swingx.painter.MattePainter;
 
 /**
  *
@@ -67,7 +63,6 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     private JLabel m_principalnotificator;
     
     private JPanelView m_jLastView;    
-   // private JBack_and_forward JBack_and_forward;
     private Action m_actionfirst;
     
     private Map<String, JPanelView> m_aPreparedViews; // Prepared views   
@@ -82,6 +77,7 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     private static List<String> list_title;
     private String breadcrumd_duplicated_title="null";
     private static final String[] MENU_VALUES = new String[] {"Sales","Edit Sales","Customer Payment","Payments", "Close Cash", "Customers", "Suppliers", "Stock", "Maintenance", "Presence Management", "Tools", "Configuration", "Printers", "Check In/Out"};
+    private static int layout = 0; 
     /** Creates new form JPrincipalApp
      * @param appview
      * @param appuser */
@@ -473,9 +469,11 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     
     
     private void showView(String sView, boolean is_back_btn_clicked) {
+        if(this.list_title.size()-1 > 0){
+            this.list_title.remove(this.list_title.size()-1);
+        }
         m_appview.getAppUserView().showTask(sView);
-        this.list_title.remove(this.list_title.size()-1);
-        set_breacrumd();
+        
     }
     
     /**
@@ -538,20 +536,25 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
 
                 setMenuVisible(getBounds().width > 800);
                 setMenuVisible(false);
-                list_layout.add(sTaskClass);
                 showView(sTaskClass); 
                 String sTitle = m_jMyView.getTitle();
                 m_jPanelTitle.setVisible(true);
-                if(sTitle == null){
-                    sTitle = "Home";
-                }
                 // Kiem tra xem neu menu title in MENU_VALUES (Gan home panel)
                 if (Arrays.asList(this.MENU_VALUES).contains(sTitle) ) {
                     this.list_title.removeAll(this.list_title);
                     this.list_title.add("Home");
                 }
-                this.list_title.add(sTitle);
-                
+                if(sTitle == null){
+                    sTitle = "Home";
+                }
+                if(sTitle != "Home"){
+                    this.list_title.add(" > " + sTitle);
+                }else{
+                    if (this.list_title.size()==0) {
+                        this.list_title.add("Home");
+                    }
+                }
+                this.list_layout.add(sTaskClass);
                 // An hien nut back
                 if(list_layout.size() == 1){
                     btn_back.setEnabled(false);
@@ -559,10 +562,9 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
                     btn_back.setEnabled(true);
                 }
                 m_jTitle.remove(this);
-                this.set_breacrumd();
-                jPanel4.setBounds(0, 0, 600, 50);
-                jPanel4.setVisible(true);
-      
+                set_breacrumd();
+                this.jPanel4.setBounds(0, 0, 600, 50);
+                this.jPanel4.setVisible(true);
             }
         } else  {
 
@@ -814,29 +816,28 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 //Render chuoi cua breadcrumd
 private void set_breacrumd(){
-//    jPanel4.repaint();
-    for (int i = 0; i < list_title.size(); i++) {
-        String url = list_layout.get(i);
+    this.jPanel4.removeAll();
+    this.jPanel4.setLayout(new FlowLayout());
+    
+    for (int i = 0; i < this.list_title.size(); i++) {
+        
         JLabel link = new JLabel();
-        link.setBounds(0, 50 , 50, 30);
-        link.setText(list_title.get(i));
+        String url = this.list_layout.get(i);
+        link.setBounds(0, 0, 50, 30);
+        link.setText(this.list_title.get(i));
         link.addMouseListener(new MouseAdapter(){  
+            @Override
             public void mouseClicked(MouseEvent e){  
                showView(url, true);
             }  
         }); 
-        jPanel4.add(link);
+        this.jPanel4.add(link);
     }
-    
 }
     
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
-        for (int i = 0; i < this.list_layout.size()-1; i++) {
-            System.out.println(this.list_layout.get(i));            
-        }
         if (this.list_layout.size() > 1) {
             showView(this.list_layout.get(this.list_layout.size()-2), true);
-            this.list_layout.remove(this.list_layout.size()-2);
             this.list_layout.remove(this.list_layout.size()-1);
 
             if (this.list_layout.size()==1){

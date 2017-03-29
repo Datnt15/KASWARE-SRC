@@ -179,7 +179,15 @@ public class JSaver extends JPanel implements StateListener {
             msg.show(this);
         }
     }//GEN-LAST:event_jbtnNewActionPerformed
-   
+
+    public void addProduct(){
+        try {
+            m_bd.actionInsert();
+        } catch (BasicException eD) {
+            MessageInf msg = new MessageInf(MessageInf.SGN_NOTICE, LocalRes.getIntString("message.nonew"), eD);
+            msg.show(this);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnDelete;
     private javax.swing.JButton jbtnNew;

@@ -419,6 +419,7 @@ public class BrowsableEditableData {
                 m_editorrecord.refresh();
                 baseMoveTo(i);
             } else if (m_iState == ST_INSERT) {
+                System.out.println("inserted");
                 int i = m_bd.insertRecord(m_editorrecord.createValue());
                 m_editorrecord.refresh();
                 baseMoveTo(i);

@@ -20,8 +20,7 @@
 package com.openbravo.pos.inventory;
 
 import com.openbravo.basic.BasicException;
-import com.openbravo.data.gui.MessageInf;
-import com.openbravo.data.loader.LocalRes;
+import com.openbravo.data.gui.JSaver;
 import com.openbravo.data.user.BrowsableEditableData;
 import com.openbravo.data.user.EditorListener;
 import com.openbravo.data.user.EditorRecord;
@@ -35,8 +34,6 @@ import com.openbravo.pos.ticket.ProductFilter;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -82,21 +79,11 @@ public class ProductsPanel extends JPanelTable2 implements EditorListener {
         jeditor.getActionMap().put("addProduct", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                BrowsableEditableData my_bd;
-                try {
-                    activate();
-                } catch (BasicException ex) {
-                    Logger.getLogger(ProductsPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                my_bd = new BrowsableEditableData(lpr, spr, jeditor, dirty);
-                try {
-                    my_bd.setDirty();
-                    my_bd.setState();
-                    my_bd.actionInsert();
-                } catch (BasicException eD) {
-                    MessageInf msg = new MessageInf(MessageInf.SGN_NOTICE, LocalRes.getIntString("message.nonew"), eD);
-                    msg.show(jeditor);
-                }
+                BrowsableEditableData bd = new BrowsableEditableData(lpr, spr, jeditor, dirty);
+                bd.setDirty();
+                bd.setState();
+                JSaver c = new JSaver(bd);
+                c.addProduct();
             }
         });
         // END OF KEY BINDINGS

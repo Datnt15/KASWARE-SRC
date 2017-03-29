@@ -493,12 +493,11 @@ public class BrowsableEditableData {
         saveData();
         
         if (canInsertData()) { 
-            System.out.println("dfdsfsd");
             // Y nos ponemos en estado de insert
             m_iState = ST_INSERT;
             m_editorrecord.writeValueInsert();
             m_Dirty.setDirty(false);
-            fireStateUpdate(); // ?
+            fireStateUpdate(); 
         }
     }
     

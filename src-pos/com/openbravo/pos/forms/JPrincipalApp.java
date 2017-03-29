@@ -1,5 +1,5 @@
 //    KASWARE POS Solution
-//    Copyright (c) KASWARE & previous Openbravo POS works
+//    Copyright (c) KASWARE #
 //    http://kasware.com//product
 //
 //    This file is part of KASWARE.
@@ -59,13 +59,13 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     
     private final JRootApp m_appview;
     private final AppUser m_appuser;
-    
+    private  AppView m_App;
     private DataLogicSystem m_dlSystem;
     
     private JLabel m_principalnotificator;
     
     private JPanelView m_jLastView;    
-    private JBack_and_forward JBack_and_forward;
+   // private JBack_and_forward JBack_and_forward;
     private Action m_actionfirst;
     
     private Map<String, JPanelView> m_aPreparedViews; // Prepared views   
@@ -472,8 +472,8 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     
     
     private void showView(String sView, boolean is_back_btn_clicked) {
-        CardLayout cl = (CardLayout)(m_jPanelContainer.getLayout());
-        cl.show(m_jPanelContainer, sView);
+         m_appview.getAppUserView().showTask(sView);
+        
         this.list_title.remove(this.list_title.size()-1);
         m_jTitle1.setText(get_breacrumd(this.list_title.size()-1, this.list_title.get(this.list_title.size()-1))); 
     }
@@ -544,9 +544,6 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
                 m_jPanelTitle.setVisible(true);
                 if(sTitle == null){
                     sTitle = "Home";
-                }else{
-                    // Remove all html tag in title string
-                    sTitle = sTitle.replaceAll("\\<.*?>"," ").trim();
                 }
                 // Kiem tra xem neu menu title in MENU_VALUES (Gan home panel)
                 if (Arrays.asList(this.MENU_VALUES).contains(sTitle) ) {
@@ -561,7 +558,7 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
                 }else{
                     btn_back.setEnabled(true);
                 }
-                m_jTitle1.setText(sTitle);
+                m_jTitle.remove(this);
                 m_jTitle1.setText(get_breacrumd(this.list_title.size()-1, this.list_title.get(this.list_title.size()-1)));       
             }
         } else  {
@@ -572,10 +569,6 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
         }
         m_appview.waitCursorEnd();       
     }
-    
-//    public static String html2text(String html) {
-//        return Jsoup.parse(html).text();
-//    }
     
     /**
      *
@@ -629,6 +622,10 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
         jPanel3 = new javax.swing.JPanel();
         m_jTitle1 = new javax.swing.JLabel();
         btn_back = new javax.swing.JButton();
+        Stock_sc = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        Config_sc = new javax.swing.JButton();
+        Salessc = new javax.swing.JButton();
         m_jPanelContainer = new javax.swing.JPanel();
 
         m_jTitle.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -692,6 +689,8 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
 
         m_jPanelTitle.setLayout(new java.awt.BorderLayout());
 
+        jPanel3.setPreferredSize(new java.awt.Dimension(233, 25));
+
         m_jTitle1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         m_jTitle1.setForeground(new java.awt.Color(0, 168, 223));
         m_jTitle1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, java.awt.Color.darkGray), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
@@ -700,8 +699,7 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
         m_jTitle1.setPreferredSize(new java.awt.Dimension(100, 35));
 
         btn_back.setBackground(new java.awt.Color(0, 168, 223));
-        btn_back.setForeground(new java.awt.Color(255, 255, 255));
-        btn_back.setText("Previous");
+        btn_back.setText("Back");
         btn_back.setActionCommand("back");
         btn_back.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btn_back.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -717,23 +715,75 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
             }
         });
 
+        Stock_sc.setText("Stock");
+        Stock_sc.setMaximumSize(new java.awt.Dimension(79, 23));
+        Stock_sc.setMinimumSize(new java.awt.Dimension(79, 23));
+        Stock_sc.setPreferredSize(new java.awt.Dimension(79, 23));
+        Stock_sc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Stock_scActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Customer");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        Config_sc.setText("Setting");
+        Config_sc.setMaximumSize(new java.awt.Dimension(79, 23));
+        Config_sc.setMinimumSize(new java.awt.Dimension(79, 23));
+        Config_sc.setPreferredSize(new java.awt.Dimension(79, 23));
+        Config_sc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Config_scActionPerformed(evt);
+            }
+        });
+
+        Salessc.setText("Sales");
+        Salessc.setMaximumSize(new java.awt.Dimension(79, 23));
+        Salessc.setMinimumSize(new java.awt.Dimension(57, 23));
+        Salessc.setPreferredSize(new java.awt.Dimension(79, 23));
+        Salessc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalesscActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(m_jTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addGap(119, 119, 119))
+                .addGap(69, 69, 69)
+                .addComponent(Salessc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Stock_sc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Config_sc, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(m_jTitle1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btn_back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(m_jTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Salessc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Stock_sc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Config_sc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         m_jPanelTitle.add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -768,22 +818,50 @@ private String get_breacrumd(int index, String title){
 }
     
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
-        
+        for (int i = 0; i < this.list_layout.size()-1; i++) {
+            System.out.println(this.list_layout.get(i));            
+        }
         if (this.list_layout.size() > 1) {
             showView(this.list_layout.get(this.list_layout.size()-2), true);
+            this.list_layout.remove(this.list_layout.size()-2);
             this.list_layout.remove(this.list_layout.size()-1);
-            
+
             if (this.list_layout.size()==1){
                 this.btn_back.setEnabled(false);                
             }
 
         }
     }//GEN-LAST:event_btn_backActionPerformed
+
+    private void SalesscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalesscActionPerformed
+        m_appview.getAppUserView().showTask("com.openbravo.pos.sales.JPanelTicketSales");
+        
+        
+    }//GEN-LAST:event_SalesscActionPerformed
+
+    private void Stock_scActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stock_scActionPerformed
+        // TODO add your handling code here:
+        m_appview.getAppUserView().showTask("com.openbravo.pos.forms.MenuStockManagement");
+    }//GEN-LAST:event_Stock_scActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        m_appview.getAppUserView().showTask("com.openbravo.pos.forms.MenuCustomers");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void Config_scActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Config_scActionPerformed
+        // TODO add your handling code here:
+        m_appview.getAppUserView().showTask("com.openbravo.pos.config.JPanelConfiguration");
+    }//GEN-LAST:event_Config_scActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Config_sc;
+    private javax.swing.JButton Salessc;
+    private javax.swing.JButton Stock_sc;
     private javax.swing.JButton btn_back;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -452,7 +452,6 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
 
         myprod[29] = m_jInCatalog.isSelected();
         myprod[30] = Formats.INT.parseValue(m_jCatalogOrder.getText());
-
         return myprod;        
     }
 

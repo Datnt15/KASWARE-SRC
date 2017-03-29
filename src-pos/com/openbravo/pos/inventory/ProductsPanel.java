@@ -35,6 +35,8 @@ import com.openbravo.pos.ticket.ProductFilter;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -81,6 +83,11 @@ public class ProductsPanel extends JPanelTable2 implements EditorListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BrowsableEditableData my_bd;
+                try {
+                    activate();
+                } catch (BasicException ex) {
+                    Logger.getLogger(ProductsPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 my_bd = new BrowsableEditableData(lpr, spr, jeditor, dirty);
                 try {
                     my_bd.setDirty();

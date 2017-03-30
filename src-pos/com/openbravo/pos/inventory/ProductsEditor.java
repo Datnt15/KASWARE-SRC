@@ -864,7 +864,7 @@ public final class ProductsEditor extends javax.swing.JPanel implements EditorRe
         }
     }
 
-        private void calculateGP() {
+    private void calculateGP() {
 
         if (!reportlock) {
             reportlock = true;

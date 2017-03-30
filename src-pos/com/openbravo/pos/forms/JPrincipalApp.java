@@ -76,7 +76,211 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     private List<String> list_layout;
     private static List<String> list_title;
     private String breadcrumd_duplicated_title="null";
-    private static final String[] MENU_VALUES = new String[] {"Sales","Edit Sales","Customer Payment","Payments", "Close Cash", "Customers", "Suppliers", "Stock", "Maintenance", "Presence Management", "Tools", "Configuration", "Printers", "Check In/Out"};
+    private static final String[][] MENU_VALUES = new String[][] {
+        {"Sales", "com.openbravo.pos.sales.JPanelTicketSales"},
+        {"Edit Sales", "com.openbravo.pos.sales.JPanelTicketEdits"},
+        {"Customer Payment", "com.openbravo.pos.customers.CustomersPayment"},
+        {"Payments", "com.openbravo.pos.panels.JPanelPayments"},
+        {"Close Cash", "com.openbravo.pos.panels.JPanelCloseMoney"},
+        {"Customers", "com.openbravo.pos.forms.MenuCustomers"},
+        {"Customers", "com.openbravo.pos.customers.CustomersPanel"},
+        {"Customers", "/com/openbravo/reports/customers.bs"},
+        {"Sales", "/com/openbravo/reports/customers_sales.bs"},
+        {"Debtors", "/com/openbravo/reports/customers_debtors.bs"},
+        {"Cards", "/com/openbravo/reports/customers_cards.bs"},
+        {"List", "/com/openbravo/reports/customers_list.bs"},
+        {"List Export", "/com/openbravo/reports/customers_export.bs"},
+        {"Suppliers", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"Suppliers", "com.openbravo.pos.suppliers.SuppliersPanel"},
+        {"Suppliers", "/com/openbravo/reports/suppliers.bs"},
+        {"Products", "/com/openbravo/reports/suppliers_products.bs"},
+        {"Creditors", "/com/openbravo/reports/suppliers_creditors.bs"},
+        {"Diary", "/com/openbravo/reports/suppliers_diary.bs"},
+        {"Sales", "/com/openbravo/reports/suppliers_sales.bs"},
+        {"List", "/com/openbravo/reports/suppliers_list.bs"},
+        {"List Export", "/com/openbravo/reports/suppliers_export.bs"},
+        {"Stock", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"Categories", "com.openbravo.pos.inventory.CategoriesPanel"},
+        {"Products", "com.openbravo.pos.inventory.ProductsPanel"},
+        {"Products Location", "com.openbravo.pos.inventory.ProductsWarehousePanel"},
+        {"Stock Management", "com.openbravo.pos.inventory.StockManagement"},
+        {"Auxiliar", "com.openbravo.pos.inventory.AuxiliarPanel"},
+        {"Product Bundle", "com.openbravo.pos.inventory.BundlePanel"},
+        {"Attributes", "com.openbravo.pos.inventory.AttributesPanel"},
+        {"Attribute Values", "com.openbravo.pos.inventory.AttributeValuesPanel"},
+        {"Attribute Sets", "com.openbravo.pos.inventory.AttributeSetsPanel"},
+        {"Attribute Use", "com.openbravo.pos.inventory.AttributeUsePanel"},
+        {"Uom", "com.openbravo.pos.inventory.UomPanel"},
+        {"Inventory", "/com/openbravo/reports/inventory.bs"},
+        {"Inventory Current", "/com/openbravo/reports/inventoryb.bs"},
+        {"Inventory Diary", "/com/openbravo/reports/inventory_diary.bs"},
+        {"Inventory Broken", "/com/openbravo/reports/inventorybroken.bs"},
+        {"Inventory Diff", "/com/openbravo/reports/inventorydiff.bs"},
+        {"Inventory Diff Detail", "/com/openbravo/reports/inventorydiffdetail.bs"},
+        {"Inventory List Detail", "/com/openbravo/reports/inventorylistdetail.bs"},
+        {"Products", "/com/openbravo/reports/products.bs"},
+        {"Sale Catalog", "/com/openbravo/reports/salecatalog.bs"},
+        {"Labels", "/com/openbravo/reports/productlabels.bs"},
+        {"Labels Barcode", "/com/openbravo/reports/barcode_sheet.bs"},
+        {"Labels Shelf-Edge", "/com/openbravo/reports/barcode_shelfedgelabels.bs"},
+        {"Sales", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"Cash Closed", "/com/openbravo/reports/sales_closedpos.bs"},
+        {"Cash Closed Export", "/com/openbravo/reports/sales_closedpos_1.bs"},
+        {"Transactions", "/com/openbravo/reports/sales_cashregisterlog.bs"},
+        {"Transaction Extended", "/com/openbravo/reports/sales_extendedcashregisterlog.bs"},
+        {"Cash-Flow", "/com/openbravo/reports/sales_cashflow.bs"},
+        {"Payment", "/com/openbravo/reports/sales_paymentreport.bs"},
+        {"Category Summary", "/com/openbravo/reports/sales_categorysales.bs"},
+        {"Category Detail", "/com/openbravo/reports/sales_categorysales_1.bs"},
+        {"Sales by Product", "/com/openbravo/reports/sales_closedproducts.bs"},
+        {"Sales by Category", "/com/openbravo/reports/sales_closedproducts_1.bs"},
+        {"Sales by Customer", "/com/openbravo/reports/sales_extproducts.bs"},
+        {"Sales Profit", "/com/openbravo/reports/sales_productsalesprofit.bs"},
+        {"Taxes", "/com/openbravo/reports/sales_saletaxes.bs"},
+        {"Tax Category", "/com/openbravo/reports/sales_taxcatsales.bs"},
+        {"Tax: Summary", "/com/openbravo/reports/sales_taxes.bs"},
+        {"Product Sales", "/com/openbravo/reports/sales_chart_productsales.bs"},
+        {"Category Pie Chart", "/com/openbravo/reports/sales_chart_piesalescat.bs"},
+        {"Sales Chart", "/com/openbravo/reports/sales_chart_chartsales.bs"},
+        {"Time Series Product", "/com/openbravo/reports/sales_chart_timeseriesproduct.bs"},
+        {"Top 10 Sales", "/com/openbravo/reports/sales_chart_top10sales.bs"},
+        {"Maintenance", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"Resources", "com.openbravo.pos.admin.ResourcesPanel"},
+        {"Roles", "com.openbravo.pos.admin.RolesPanel"},
+        {"Users", "com.openbravo.pos.admin.PeoplePanel"},
+        {"Tax Categories", "com.openbravo.pos.inventory.TaxCategoriesPanel"},
+        {"Tax Customer Categories", "com.openbravo.pos.inventory.TaxCustCategoriesPanel"},
+        {"Taxes", "com.openbravo.pos.inventory.TaxPanel"},
+        {"Locations", "com.openbravo.pos.inventory.LocationsPanel"},
+        {"Floors", "com.openbravo.pos.mant.JPanelFloors"},
+        {"Tables", "com.openbravo.pos.mant.JPanelPlaces"},
+        {"Vouchers", "com.openbravo.pos.voucher.VoucherPanel"},
+        {"Users Report", "/com/openbravo/reports/people.bs"},
+        {"Sales by User", "/com/openbravo/reports/usersales.bs"},
+        {"No Sales by User", "/com/openbravo/reports/usernosales.bs"},
+        {"Presence Management", "com.openbravo.pos.forms.MenuEmployees"},
+        {"Breaks", "com.openbravo.pos.epm.BreaksPanel"},
+        {"Leaves", "com.openbravo.pos.epm.LeavesPanel"},
+        {"Daily Presence Report", "/com/openbravo/reports/dailypresencereport.bs"},
+        {"Daily Schedule Report", "/com/openbravo/reports/dailyschedulereport.bs"},
+        {"Performance Report", "/com/openbravo/reports/performancereport.bs"},
+        {"Tools", "com.openbravo.pos.imports.JPanelCSV"},
+        {"CSV Import", "com.openbravo.pos.imports.JPanelCSVImport"},
+        {"Customer CSV Import", "com.openbravo.pos.imports.CustomerCSVImport"},
+        {"CSV Reset", "com.openbravo.pos.imports.JPanelCSVCleardb"},
+        {"Transfer", "com.unicenta.pos.transfer.Transfer"},
+        {"Updated Prices", "/com/openbravo/reports/updatedprices.bs"},
+        {"New Products", "/com/openbravo/reports/newproducts.bs"},
+        {"Missing Data", "/com/openbravo/reports/missingdata.bs"},
+        {"Invalid Data", "/com/openbravo/reports/invaliddata.bs"},
+        {"Configuration", "com.openbravo.pos.config.JPanelConfiguration"},
+        {"Printer", "com.openbravo.pos.panels.JPanelPrinter"},
+        {"Check In Check Out", "com.openbravo.pos.epm.JPanelEmployeePresence"}
+    };
+    private static final String[][] SUB_MENU_VALUES = new String[][]{
+        {"com.openbravo.pos.sales.JPanelTicketSales", "null"},
+        {"com.openbravo.pos.sales.JPanelTicketEdits", "null"},
+        {"com.openbravo.pos.customers.CustomersPayment", "null"},
+        {"com.openbravo.pos.panels.JPanelPayments", "null"},
+        {"com.openbravo.pos.panels.JPanelCloseMoney", "null"},
+        {"com.openbravo.pos.forms.MenuCustomers", "null"},
+        {"com.openbravo.pos.forms.MenuSuppliers", "null"},
+        {"com.openbravo.pos.customers.CustomersPanel", "com.openbravo.pos.forms.MenuCustomers"},
+        {"/com/openbravo/reports/customers.bs", "com.openbravo.pos.forms.MenuCustomers"},
+        {"/com/openbravo/reports/customers_sales.bs", "com.openbravo.pos.forms.MenuCustomers"},
+        {"/com/openbravo/reports/customers_debtors.bs", "com.openbravo.pos.forms.MenuCustomers"},
+        {"/com/openbravo/reports/customers_diary.bs", "com.openbravo.pos.forms.MenuCustomers"},
+        {"/com/openbravo/reports/customers_cards.bs", "com.openbravo.pos.forms.MenuCustomers"},
+        {"/com/openbravo/reports/customers_list.bs", "com.openbravo.pos.forms.MenuCustomers"},
+        {"/com/openbravo/reports/customers_export.bs", "com.openbravo.pos.forms.MenuCustomers"},
+        {"com.openbravo.pos.suppliers.SuppliersPanel", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"/com/openbravo/reports/suppliers.bs", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"/com/openbravo/reports/suppliers_products.bs", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"/com/openbravo/reports/suppliers_creditors.bs", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"/com/openbravo/reports/suppliers_diary.bs", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"/com/openbravo/reports/suppliers_sales.bs", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"/com/openbravo/reports/suppliers_list.bs", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"/com/openbravo/reports/suppliers_export.bs", "com.openbravo.pos.forms.MenuSuppliers"},
+        {"com.openbravo.pos.inventory.CategoriesPanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.forms.MenuStockManagement", "null"},
+        {"com.openbravo.pos.inventory.ProductsPanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.ProductsWarehousePanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.StockManagement", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.AuxiliarPanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.BundlePanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.AttributesPanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.AttributeValuesPanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.AttributeSetsPanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.AttributeUsePanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.inventory.UomPanel", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/inventory.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/inventoryb.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/inventory_diary.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/inventorybroken.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/inventorydiff.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/inventorydiffdetail.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/inventorylistdetail.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/products.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/productscatalog.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/salecatalog.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/productlabels.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/barcode_sheet.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/barcode_sheet_jm.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"/com/openbravo/reports/barcode_shelfedgelabels.bs", "com.openbravo.pos.forms.MenuStockManagement"},
+        {"com.openbravo.pos.forms.MenuSalesManagement", "null"},
+        {"/com/openbravo/reports/sales_closedpos.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_closedpos_1.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_cashregisterlog.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_extendedcashregisterlog.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_cashflow.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_paymentreport.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_categorysales.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_categorysales_1.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_closedproducts.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_closedproducts_1.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_extproducts.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_productsalesprofit.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_saletaxes.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_taxcatsales.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_taxes.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_chart_productsales.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_chart_piesalescat.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_chart_chartsales.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_chart_timeseriesproduct.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"/com/openbravo/reports/sales_chart_top10sales.bs", "com.openbravo.pos.forms.MenuSalesManagement"},
+        {"com.openbravo.pos.forms.MenuMaintenance", "null"},
+        {"com.openbravo.pos.admin.ResourcesPanel", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.admin.RolesPanel", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.admin.PeoplePanel", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.inventory.TaxCategoriesPanel", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.inventory.TaxCustCategoriesPanel", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.inventory.TaxPanel", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.inventory.LocationsPanel", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.mant.JPanelFloors", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.mant.JPanelPlaces", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.voucher.VoucherPanel", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"/com/openbravo/reports/people.bs", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"/com/openbravo/reports/usersales.bs", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"/com/openbravo/reports/usernosales.bs", "com.openbravo.pos.forms.MenuMaintenance"},
+        {"com.openbravo.pos.forms.MenuEmployees", "null"},
+        {"com.openbravo.pos.epm.BreaksPanel", "com.openbravo.pos.forms.MenuEmployees"},
+        {"com.openbravo.pos.epm.LeavesPanel", "com.openbravo.pos.forms.MenuEmployees"},
+        {"/com/openbravo/reports/dailypresencereport.bs", "com.openbravo.pos.forms.MenuEmployees"},
+        {"/com/openbravo/reports/dailyschedulereport.bs", "com.openbravo.pos.forms.MenuEmployees"},
+        {"/com/openbravo/reports/performancereport.bs", "com.openbravo.pos.forms.MenuEmployees"},
+        {"com.openbravo.pos.imports.JPanelCSV", "null"},
+        {"com.openbravo.pos.imports.JPanelCSVImport", "com.openbravo.pos.imports.JPanelCSV"},
+        {"com.openbravo.pos.imports.CustomerCSVImport", "com.openbravo.pos.imports.JPanelCSV"},
+        {"com.openbravo.pos.imports.JPanelCSVCleardb", "com.openbravo.pos.imports.JPanelCSV"},
+        {"com.unicenta.pos.transfer.Transfer", "com.openbravo.pos.imports.JPanelCSV"},
+        {"/com/openbravo/reports/updatedprices.bs", "com.openbravo.pos.imports.JPanelCSV"},
+        {"/com/openbravo/reports/newproducts.bs", "com.openbravo.pos.imports.JPanelCSV"},
+        {"/com/openbravo/reports/missingdata.bs", "com.openbravo.pos.imports.JPanelCSV"},
+        {"/com/openbravo/reports/invaliddata.bs", "com.openbravo.pos.imports.JPanelCSV"},
+        {"com.openbravo.pos.config.JPanelConfiguration", "null"},
+        {"com.openbravo.pos.panels.JPanelPrinter", "null"},
+        {"com.openbravo.pos.epm.JPanelEmployeePresence", "null"}
+    };
     private static int layout = 0; 
     /** Creates new form JPrincipalApp
      * @param appview
@@ -150,12 +354,12 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
     }
 
     private Component getScriptMenu(String menutext) throws ScriptException {
-
         ScriptMenu menu = new ScriptMenu();
 
         ScriptEngine eng = ScriptFactory.getScriptEngine(ScriptFactory.BEANSHELL);
         eng.put("menu", menu);
         eng.eval(menutext);
+        
         return menu.getTaskPane();
     }
     
@@ -222,7 +426,7 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
          * @param key
          * @param classname
          */
-        public void addPanel(String icon, String key, String classname) {            
+        public void addPanel(String icon, String key, String classname) {    
             addAction(new MenuPanelAction(m_appview, icon, key, classname));
         }        
 
@@ -244,7 +448,6 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
          * @return
          */
         public ScriptSubmenu addSubmenu(String icon, String key, String classname) {
-            
             ScriptSubmenu submenu = new ScriptSubmenu(key); 
             m_aPreparedViews.put(classname, new JPanelMenu(submenu.getMenuDefinition()));
             addAction(new MenuPanelAction(m_appview, icon, key, classname));
@@ -537,32 +740,10 @@ public class JPrincipalApp extends javax.swing.JPanel implements AppUserView {
                 setMenuVisible(getBounds().width > 800);
                 setMenuVisible(false);
                 showView(sTaskClass); 
-                String sTitle = m_jMyView.getTitle();
+                this.list_layout.add(sTaskClass);
                 m_jPanelTitle.setVisible(true);
                 // Kiem tra xem neu menu title in MENU_VALUES (Gan home panel)
-                if (Arrays.asList(this.MENU_VALUES).contains(sTitle) ) {
-                    this.list_title.removeAll(this.list_title);
-                    this.list_title.add("Home");
-                }
-                if(sTitle == null){
-                    sTitle = "Home";
-                }
-                if(sTitle != "Home"){
-                    this.list_title.add(" > " + sTitle);
-                }else{
-                    if (this.list_title.size()==0) {
-                        this.list_title.add("Home");
-                    }
-                }
-                this.list_layout.add(sTaskClass);
-                // An hien nut back
-                if(list_layout.size() == 1){
-                    btn_back.setEnabled(false);
-                }else{
-                    btn_back.setEnabled(true);
-                }
-                m_jTitle.remove(this);
-                set_breacrumd();
+                set_breacrumd(sTaskClass);
                 this.jPanel4.setBounds(0, 0, 600, 50);
                 this.jPanel4.setVisible(true);
             }
@@ -814,27 +995,43 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     
 }//GEN-LAST:event_jButton1ActionPerformed
 
-//Render chuoi cua breadcrumd
-private void set_breacrumd(){
-    this.jPanel4.removeAll();
-    this.jPanel4.setLayout(new FlowLayout());
-    
-    for (int i = 0; i < this.list_title.size(); i++) {
+    //Render chuoi cua breadcrumd
+    private void set_breacrumd(String taskClass){
+        this.jPanel4.removeAll();
+        this.jPanel4.setLayout(new FlowLayout());
         
-        JLabel link = new JLabel();
-        String url = this.list_layout.get(i);
-        link.setBounds(0, 0, 50, 30);
-        link.setText(this.list_title.get(i));
-        link.addMouseListener(new MouseAdapter(){  
-            @Override
-            public void mouseClicked(MouseEvent e){  
-               showView(url, true);
-            }  
-        }); 
-        this.jPanel4.add(link);
+        get_links(taskClass);
     }
-}
     
+    private void get_links(String taskClass){
+        for (int i = 0; i < SUB_MENU_VALUES.length; i++) {
+            if (SUB_MENU_VALUES[i][0] == taskClass) {
+                
+                if (SUB_MENU_VALUES[i][1] != "null") {
+                    get_links(SUB_MENU_VALUES[i][1]);
+                }
+                JLabel link = new JLabel();
+                link.setBounds(0, 50 , 50, 30);
+                String[] title = get_alchor(taskClass);
+                link.setText(title[0]);
+                link.addMouseListener(new MouseAdapter(){  
+                    @Override
+                    public void mouseClicked(MouseEvent e){  
+                       showView(title[1], true);
+                    }  
+                }); 
+                this.jPanel4.add(link);
+            }
+        }
+    }
+    private String[] get_alchor(String taskClass){
+        for (int i = 0; i < MENU_VALUES.length; i++) {
+            if (MENU_VALUES[i][1] == taskClass) {
+                return MENU_VALUES[i];
+            } 
+        }
+        return null;
+    }
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
         if (this.list_layout.size() > 1) {
             showView(this.list_layout.get(this.list_layout.size()-2), true);

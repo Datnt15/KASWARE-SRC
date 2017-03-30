@@ -211,13 +211,8 @@
                               <Component id="Stock_sc" max="32767" attributes="0"/>
                               <Component id="jButton3" max="32767" attributes="0"/>
                               <Component id="Config_sc" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btn_back" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jPanel4" alignment="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="btn_back" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel4" alignment="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
